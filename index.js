@@ -159,6 +159,20 @@ seemoreButton.addEventListener('click', function() {
     additionalProjects.style.display = 'block';
     seemoreButton.style.display = 'none';
 });
+window.addEventListener("scroll", function () {
+    var scrollToTop = document.getElementById("scrollToTop");
+    if (window.scrollY > 200) {
+        scrollToTop.classList.add("visible");
+    } else {
+        scrollToTop.classList.remove("visible");
+    }
+});
+
+const contactForm = document.getElementById("contact-form");
+const notification = document.getElementById("notification");
+const closeNotification = document.getElementById("close-notification");
+const notificationSound = new Audio("Notification.mp3");
+
 document.getElementById("submit").addEventListener("click", function() {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
@@ -170,12 +184,19 @@ document.getElementById("submit").addEventListener("click", function() {
                        "&body=" + encodeURIComponent(message);
 
     window.location.href = mailtoLink;
+
+    setTimeout(function() {
+        notificationSound.play();
+        notification.style.display = "block";
+        
+        // Hide the notification after 20 seconds
+        setTimeout(function() {
+            notification.style.display = "none";
+        }, 20000);
+    }, 1000); 
 });
-window.addEventListener("scroll", function () {
-    var scrollToTop = document.getElementById("scrollToTop");
-    if (window.scrollY > 200) {
-        scrollToTop.classList.add("visible");
-    } else {
-        scrollToTop.classList.remove("visible");
-    }
+closeNotification.addEventListener("click", function() {
+    // Close the notification
+    notification.style.display = "none";
 });
+
