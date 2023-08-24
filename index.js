@@ -168,9 +168,7 @@ window.addEventListener("scroll", function () {
     }
 });
 
-const contactForm = document.getElementById("contact-form");
-const notification = document.getElementById("notification");
-const closeNotification = document.getElementById("close-notification");
+
 const notificationSound = new Audio("Notification.mp3");
 
 document.getElementById("submit").addEventListener("click", function() {
@@ -188,15 +186,7 @@ document.getElementById("submit").addEventListener("click", function() {
     setTimeout(function() {
         notificationSound.play();
         notification.style.display = "block";
-        
-        // Hide the notification after 20 seconds
-        setTimeout(function() {
-            notification.style.display = "none";
-        }, 20000);
     }, 1000); 
 });
-closeNotification.addEventListener("click", function() {
-    // Close the notification
-    notification.style.display = "none";
-});
+
 
